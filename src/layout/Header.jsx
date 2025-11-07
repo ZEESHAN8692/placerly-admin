@@ -1,8 +1,17 @@
+import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { FiMenu, FiChevronDown, FiBell, FiUser, FiSettings, FiLogOut } from "react-icons/fi";
+import { profile } from "../queryFuction/queryFunction";
+import { Link } from "react-router-dom";
 
 const Header = ({ toggleSidebar }) => {
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
+
+  const {data , isLoading, isError} = useQuery({
+    queryKey: ['user'],
+    queryFn: profile
+  })
+  // console.log("Profile",data.name);
 
   return (
     <nav className="fixed top-0 right-0 left-0 z-20 bg-gray-800 border-b border-gray-700 shadow-sm">
@@ -31,10 +40,10 @@ const Header = ({ toggleSidebar }) => {
               className="flex items-center space-x-2 hover:bg-gray-700 px-2 py-1 rounded-lg"
             >
               <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white font-semibold shadow-lg">
-                A
+                {data?.name.charAt(0)}
               </div>
               <div className="hidden sm:block text-left">
-                <p className="font-medium text-sm sm:text-base">Admin</p>
+                <p className="font-medium text-sm sm:text-base">{data?.name}</p>
                 <p className="text-xs text-gray-400">Administrator</p>
               </div>
               <FiChevronDown className="w-4 h-4 text-gray-400" />
@@ -42,12 +51,16 @@ const Header = ({ toggleSidebar }) => {
 
             {profileMenuOpen && (
               <div className="absolute right-0 mt-2 w-44 bg-gray-800 border border-gray-700 rounded-lg shadow-lg z-50">
-                <button className="flex items-center w-full px-4 py-2 text-sm hover:bg-gray-700">
-                  <FiUser className="mr-2" /> Profile
-                </button>
-                <button className="flex items-center w-full px-4 py-2 text-sm hover:bg-gray-700">
-                  <FiSettings className="mr-2" /> Settings
-                </button>
+                <Link to="/dashboard/profile">
+                  <button className="flex items-center w-full px-4 py-2 text-sm hover:bg-gray-700">
+                    <FiUser className="mr-2" /> Profile
+                  </button>
+                </Link>
+                <Link to="/dashboard/settings">
+                  <button className="flex items-center w-full px-4 py-2 text-sm hover:bg-gray-700">
+                    <FiSettings className="mr-2" /> Settings
+                  </button>
+                </Link>
                 <hr className="border-gray-700" />
                 <button className="flex items-center w-full px-4 py-2 text-sm text-red-400 hover:bg-gray-700">
                   <FiLogOut className="mr-2" /> Logout

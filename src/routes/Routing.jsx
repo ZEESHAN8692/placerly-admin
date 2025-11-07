@@ -10,6 +10,12 @@ import FAQManagement from '../pages/FAQManagement'
 import Support from '../pages/Support'
 import Settings from '../pages/Settings'
 import Banner from '../pages/Banner'
+import PricingManagement from '../pages/Pricing'
+import About from '../pages/About'
+import Services from '../pages/Services'
+import TermsConditions from '../pages/TermsConditions'
+import Privacy from '../pages/Privacy'
+import Profile from '../pages/Profile'
 
 const Routing = () => {
   return (
@@ -21,7 +27,13 @@ const Routing = () => {
             <Route path='/dashboard/users' element={<UserManagement/>}/>
             <Route path='/dashboard/blogs' element={<BlogManagement/>}/>
             <Route path='/dashboard/subscription' element={<Subscription/>}/>
+            <Route path='/dashboard/pricing' element={<PricingManagement/>}/>
             <Route path='/dashboard/faq' element={<FAQManagement/>}/>
+            <Route path='/dashboard/profile' element={<Profile/>}/>
+            <Route path='/dashboard/cms/about' element={<About/>}/>
+            <Route path='/dashboard/cms/services' element={<Services/>}/>
+            <Route path='/dashboard/cms/terms' element={<TermsConditions/>}/>
+            <Route path='/dashboard/cms/privacy' element={<Privacy/>}/>
             <Route path='/dashboard/support' element={<Support/>}/>
             <Route path='/dashboard/banner' element={<Banner/>}/>
             <Route path='/dashboard/settings' element={<Settings/>}/>

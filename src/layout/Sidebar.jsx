@@ -1,22 +1,40 @@
-import React, { use } from "react";
+import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import {
-  FiUsers, FiSettings, FiFileText, FiCreditCard,
-  FiHelpCircle, FiBook, FiHeadphones, FiPieChart
+  FiUsers,
+  FiSettings,
+  FiFileText,
+  FiCreditCard,
+  FiHelpCircle,
+  FiBook,
+  FiHeadphones,
+  FiPieChart,
+  FiChevronDown,
+  FiChevronUp,
 } from "react-icons/fi";
 
 const Sidebar = ({ sidebarOpen, toggleSidebar, activeSection, setActiveSection }) => {
   const path = useLocation().pathname;
+  const [cmsOpen, setCmsOpen] = useState(false); // 👈 CMS dropdown toggle state
+
   const menuItems = [
     { name: "Dashboard", icon: <FiPieChart className="w-5 h-5" />, link: "/dashboard" },
     { name: "User Management", icon: <FiUsers className="w-5 h-5" />, link: "/dashboard/users" },
-    { name: "CMS Management", icon: <FiFileText className="w-5 h-5" />, link: "/dashboard/cms" },
     { name: "Subscription", icon: <FiCreditCard className="w-5 h-5" />, link: "/dashboard/subscription" },
+    { name: "Pricing", icon: <FiCreditCard className="w-5 h-5" />, link: "/dashboard/pricing" },
     { name: "FAQ Management", icon: <FiHelpCircle className="w-5 h-5" />, link: "/dashboard/faq" },
     { name: "Blog Management", icon: <FiBook className="w-5 h-5" />, link: "/dashboard/blogs" },
     { name: "Banner Management", icon: <FiBook className="w-5 h-5" />, link: "/dashboard/banner" },
     { name: "Support", icon: <FiHeadphones className="w-5 h-5" />, link: "/dashboard/support" },
     { name: "Settings", icon: <FiSettings className="w-5 h-5" />, link: "/dashboard/settings" },
+  ];
+
+  // CMS Submenu Items
+  const cmsSubItems = [
+    { name: "About Us", link: "/dashboard/cms/about" },
+    { name: "Services", link: "/dashboard/cms/services" },
+    { name: "Terms & Conditions", link: "/dashboard/cms/terms" },
+    { name: "Privacy Policy", link: "/dashboard/cms/privacy" },
   ];
 
   return (
@@ -33,7 +51,7 @@ const Sidebar = ({ sidebarOpen, toggleSidebar, activeSection, setActiveSection }
                 to={item.link}
                 onClick={() => setActiveSection(item.name)}
                 className={`w-full flex items-center space-x-3 px-3 py-3 rounded-xl transition-all duration-200 group ${
-                    path === item.link
+                  path === item.link
                     ? "bg-blue-600 text-white shadow-lg shadow-blue-500/25"
                     : "hover:bg-blue-800/30 text-gray-300 hover:text-white"
                 }`}
@@ -51,6 +69,49 @@ const Sidebar = ({ sidebarOpen, toggleSidebar, activeSection, setActiveSection }
               </Link>
             </li>
           ))}
+
+          {/* CMS Dropdown */}
+          <li>
+            <button
+              onClick={() => setCmsOpen(!cmsOpen)}
+              className={`w-full flex justify-between items-center space-x-3 px-3 py-3 rounded-xl transition-all duration-200 group ${
+                path.startsWith("/dashboard/cms")
+                  ? "bg-blue-600 text-white shadow-lg shadow-blue-500/25"
+                  : "hover:bg-blue-800/30 text-gray-300 hover:text-white"
+              }`}
+            >
+              <div className="flex items-center space-x-3">
+                <FiFileText className="w-5 h-5" />
+                <span className="font-medium text-sm">CMS Management</span>
+              </div>
+              {cmsOpen ? (
+                <FiChevronUp className="w-4 h-4" />
+              ) : (
+                <FiChevronDown className="w-4 h-4" />
+              )}
+            </button>
+
+            {/* Submenu */}
+            {cmsOpen && (
+              <ul className="pl-10 mt-2 space-y-1">
+                {cmsSubItems.map((sub, i) => (
+                  <li key={i}>
+                    <Link
+                      to={sub.link}
+                      onClick={() => setActiveSection(sub.name)}
+                      className={`block px-3 py-2 rounded-lg text-sm transition-all ${
+                        path === sub.link
+                          ? "bg-blue-700 text-white"
+                          : "text-gray-400 hover:bg-blue-800/40 hover:text-white"
+                      }`}
+                    >
+                      {sub.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
         </ul>
       </div>
     </aside>
