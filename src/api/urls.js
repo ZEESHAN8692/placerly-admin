@@ -9,7 +9,7 @@ const reset_password_end = "api/reset-password"
 const users_end = "api/users"
 const user_end = "api/user"
 const update_user_end = "api/update-user"
-const delete_user_end = "api/delete-user"
+const delete_user_end = "api/delelte-users"
 
 // Banner Management
 const create_banners_end = "api/create-banners"
