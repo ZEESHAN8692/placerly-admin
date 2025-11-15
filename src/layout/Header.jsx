@@ -1,10 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { FiMenu, FiChevronDown, FiBell, FiUser, FiSettings, FiLogOut } from "react-icons/fi";
-import { profile } from "../queryFuction/queryFunction";
-import { Link } from "react-router-dom";
+import { logout, profile } from "../queryFuction/queryFunction";
+import { Link, useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 const Header = ({ toggleSidebar }) => {
+  const navigate= useNavigate()
   const [profileMenuOpen, setProfileMenuOpen] = useState(false);
 
   const {data , isLoading, isError} = useQuery({
@@ -12,6 +14,14 @@ const Header = ({ toggleSidebar }) => {
     queryFn: profile
   })
   // console.log("Profile",data.name);
+
+  const logoutHandhle =async ()=>{
+    await logout()
+    Cookies.remove("token");
+    Cookies.remove("subscriptionActive");
+    navigate("/", { replace: true });
+
+  }
 
   return (
     <nav className="fixed top-0 right-0 left-0 z-20 bg-gray-800 border-b border-gray-700 shadow-sm">
@@ -52,17 +62,19 @@ const Header = ({ toggleSidebar }) => {
             {profileMenuOpen && (
               <div className="absolute right-0 mt-2 w-44 bg-gray-800 border border-gray-700 rounded-lg shadow-lg z-50">
                 <Link to="/dashboard/profile">
-                  <button className="flex items-center w-full px-4 py-2 text-sm hover:bg-gray-700">
+                  <button className="flex items-center w-full px-4 py-2 text-sm hover:bg-gray-700 cursor-pointer">
                     <FiUser className="mr-2" /> Profile
                   </button>
                 </Link>
                 <Link to="/dashboard/settings">
-                  <button className="flex items-center w-full px-4 py-2 text-sm hover:bg-gray-700">
+                  <button className="flex items-center w-full px-4 py-2 text-sm hover:bg-gray-700 cursor-pointer">
                     <FiSettings className="mr-2" /> Settings
                   </button>
                 </Link>
                 <hr className="border-gray-700" />
-                <button className="flex items-center w-full px-4 py-2 text-sm text-red-400 hover:bg-gray-700">
+                <button className="flex items-center w-full px-4 py-2 text-sm text-red-400 hover:bg-gray-700 cursor-pointer"
+                  onClick={logoutHandhle}
+                >
                   <FiLogOut className="mr-2" /> Logout
                 </button>
               </div>

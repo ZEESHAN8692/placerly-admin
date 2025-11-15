@@ -1,6 +1,8 @@
 import React, { Suspense, lazy } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import WealthSpinner from "../components/Spinner";
+import ProtectedRoutes from "./protectedRoute";
+
 
 // Lazy load pages
 const Login = lazy(() => import("../pages/Login"));
@@ -25,26 +27,34 @@ const Routing = () => {
     <BrowserRouter>
       <Suspense fallback={<WealthSpinner />}>
         <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="*" element={<NotFound />} />
 
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/dashboard/users" element={<UserManagement />} />
-          <Route path="/dashboard/blogs" element={<BlogManagement />} />
-          <Route path="/dashboard/subscription" element={<Subscription />} />
-          <Route path="/dashboard/pricing" element={<PricingManagement />} />
-          <Route path="/dashboard/faq" element={<FAQManagement />} />
-          <Route path="/dashboard/profile" element={<Profile />} />
+          {/* Public Routes */}
+         
+            <Route path="/" element={<Login />} />
+            <Route path="*" element={<NotFound />} />
+        
 
-          {/* CMS pages */}
-          <Route path="/dashboard/cms/about" element={<About />} />
-          <Route path="/dashboard/cms/services" element={<Services />} />
-          <Route path="/dashboard/cms/terms" element={<TermsConditions />} />
-          <Route path="/dashboard/cms/privacy" element={<Privacy />} />
+          {/* Protected Dashboard Routes */}
+          <Route element={<ProtectedRoutes />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard/users" element={<UserManagement />} />
+            <Route path="/dashboard/blogs" element={<BlogManagement />} />
+            <Route path="/dashboard/subscription" element={<Subscription />} />
+            <Route path="/dashboard/pricing" element={<PricingManagement />} />
+            <Route path="/dashboard/faq" element={<FAQManagement />} />
+            <Route path="/dashboard/profile" element={<Profile />} />
 
-          <Route path="/dashboard/support" element={<Support />} />
-          <Route path="/dashboard/banner" element={<Banner />} />
-          <Route path="/dashboard/settings" element={<Settings />} />
+     
+            <Route path="/dashboard/cms/about" element={<About />} />
+            <Route path="/dashboard/cms/services" element={<Services />} />
+            <Route path="/dashboard/cms/terms" element={<TermsConditions />} />
+            <Route path="/dashboard/cms/privacy" element={<Privacy />} />
+
+            <Route path="/dashboard/support" element={<Support />} />
+            <Route path="/dashboard/banner" element={<Banner />} />
+            <Route path="/dashboard/settings" element={<Settings />} />
+          </Route>
+
         </Routes>
       </Suspense>
     </BrowserRouter>
