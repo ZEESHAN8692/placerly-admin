@@ -33,8 +33,8 @@ const Sidebar = ({ sidebarOpen, toggleSidebar, activeSection, setActiveSection }
   const cmsSubItems = [
     { name: "About Us", link: "/dashboard/cms/about" },
     { name: "Services", link: "/dashboard/cms/services" },
-    { name: "Terms & Conditions", link: "/dashboard/cms/terms" },
-    { name: "Privacy Policy", link: "/dashboard/cms/privacy" },
+    // { name: "Terms & Conditions", link: "/dashboard/cms/terms" },
+    // { name: "Privacy Policy", link: "/dashboard/cms/privacy" },
   ];
 
   return (

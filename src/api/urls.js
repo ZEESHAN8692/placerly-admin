@@ -47,6 +47,10 @@ const update_blog_end = "api/update-blog"
 const delete_blog_end = "api/delete-blog"
 
 
+// Admin Dashboard
+const admin_dashboard_end = "api/admin-dashboard"
+
+
 
 
 
@@ -92,6 +96,7 @@ export {
     blog_end,
     update_blog_end,
     delete_blog_end,
+    admin_dashboard_end
    
 }
 
