@@ -33,9 +33,11 @@ const Header = ({ toggleSidebar }) => {
           >
             <FiMenu className="w-5 h-5" />
           </button>
-          <h1 className="ml-3 sm:ml-4 text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
-            Placerly
-          </h1>
+          <Link to="/dashboard" className="cursor-pointer">
+            <h1 className="ml-3 sm:ml-4 text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
+              Placerly
+            </h1>
+          </Link>
           
         </div>
 

@@ -2,6 +2,7 @@ import React, { Suspense, lazy } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import WealthSpinner from "../components/Spinner";
 import ProtectedRoutes from "./protectedRoute";
+import AdminChat from "../pages/Chat";
 
 
 
@@ -35,6 +36,8 @@ const Routing = () => {
          
             <Route path="/" element={<Login />} />
             <Route path="*" element={<NotFound />} />
+            <Route path="/chat" element={<AdminChat />} />
+          
         
 
           {/* Protected Dashboard Routes */}

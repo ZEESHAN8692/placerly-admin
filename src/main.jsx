@@ -8,7 +8,8 @@ import { ToastContainer } from 'react-toastify'
 const queryClient = new QueryClient()
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
+  // <StrictMode>
+    <>
     <QueryClientProvider client={queryClient}>
       <App />
       <ToastContainer
@@ -25,5 +26,6 @@ createRoot(document.getElementById('root')).render(
         // transition={Bounce}
       />
     </QueryClientProvider>
-  </StrictMode>,
+    </>
+  
 )
