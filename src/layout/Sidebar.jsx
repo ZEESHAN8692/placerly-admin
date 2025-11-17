@@ -15,7 +15,7 @@ import {
 
 const Sidebar = ({ sidebarOpen, toggleSidebar, activeSection, setActiveSection }) => {
   const path = useLocation().pathname;
-  const [cmsOpen, setCmsOpen] = useState(false); // 👈 CMS dropdown toggle state
+  const [cmsOpen, setCmsOpen] = useState(false); 
 
   const menuItems = [
     { name: "Dashboard", icon: <FiPieChart className="w-5 h-5" />, link: "/dashboard" },

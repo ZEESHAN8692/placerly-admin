@@ -79,7 +79,7 @@ const About = () => {
                     <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        className="bg-[#08101D]/50 border border-[#F8FAFC]/10 p-5 rounded-xl mb-10"
+                        className="c border border-[#F8FAFC]/10 p-5 rounded-xl mb-10"
                     >
                         <h3 className="text-xl text-[#F8FAFC] font-semibold mb-3">Current About Us Data</h3>
 

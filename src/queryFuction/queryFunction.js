@@ -28,6 +28,27 @@ export const profile = async () => {
     }
 }
 
+
+export const updateProfile = async (data) => {
+    try {
+        const updateProfile = await axiosInstance.put(update_profile_end, data)
+        return updateProfile.data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const resetPassword = async (data) => {
+    try {
+        const resetPassword = await axiosInstance.post(reset_password_end, data)
+        return resetPassword.data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+
+
 // User Management
 export const users = async () => {
     try {

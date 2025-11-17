@@ -36,6 +36,7 @@ const Header = ({ toggleSidebar }) => {
           <h1 className="ml-3 sm:ml-4 text-xl sm:text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text text-transparent">
             Placerly
           </h1>
+          
         </div>
 
         <div className="flex items-center space-x-3 sm:space-x-5 relative">
