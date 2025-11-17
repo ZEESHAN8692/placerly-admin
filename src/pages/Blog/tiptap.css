@@ -1,0 +1,23 @@
+/* Editor wrapper */
+.tiptap-editor {
+  min-height: 200px;
+  background: #ffffff;
+  color: #000000;
+  padding: 10px;
+  border-radius: 8px;
+  outline: none !important;
+}
+
+/* Remove outline on focus */
+.tiptap-editor:focus {
+  outline: none !important;
+}
+
+/* Placeholder */
+.tiptap-editor p.is-empty::before {
+  content: attr(data-placeholder);
+  color: #888;
+  float: left;
+  pointer-events: none;
+  height: 0;
+}

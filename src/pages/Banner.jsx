@@ -10,6 +10,8 @@ import {
 } from "../queryFuction/queryFunction";
 import { useForm } from "react-hook-form";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
+import customStyles from "../custom/customeTableStyle";
+import { Form } from "react-router-dom";
 
 const Banner = () => {
   const [filterText, setFilterText] = useState("");
@@ -75,14 +77,18 @@ const Banner = () => {
             }}
             className="p-1.5 cursor-pointer"
           >
-            <FaEdit className="hover:text-blue-500" />
+            <svg className="w-4 h-4 text-[#155DFC]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+            </svg>
           </button>
 
           <button
             onClick={() => deleteMutation.mutate(row._id)}
             className="p-1.5 cursor-pointer"
           >
-            <FaTrashAlt className="hover:text-red-400" />
+            <svg className="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+            </svg>
           </button>
         </div>
       ),
@@ -101,18 +107,6 @@ const Banner = () => {
     );
   }, [data, filterText, statusFilter]);
 
-  const customStyles = {
-    table: { style: { backgroundColor: "transparent" } },
-    rows: {
-      style: {
-        backgroundColor: "transparent",
-        borderBottom: "1px solid rgba(248, 250, 252, 0.1)",
-        "&:hover": {
-          backgroundColor: "rgba(21, 93, 252, 0.05)",
-        },
-      },
-    },
-  };
 
   return (
     <Layout>
@@ -178,10 +172,22 @@ const Banner = () => {
           onClose={() => setModalOpen(false)}
           initialData={editData}
           onSubmit={(formData) => {
+
+            const fd = new FormData();
+            fd.append("title", formData.title);
+            fd.append("description", formData.description);
+            fd.append("link", formData.link);
+            fd.append("imageUrl", formData.imageFile);
+            // const finalData = { ...formData };
+            // delete finalData.imageFile; 
+
             if (editData) {
-              updateMutation.mutate({ id: editData._id, ...formData });
+              updateMutation.mutate({
+                id: editData._id,
+                data: fd,
+              });
             } else {
-              addMutation.mutate(formData);
+              addMutation.mutate(fd);
             }
           }}
         />
@@ -248,6 +254,7 @@ const BannerModal = ({ onClose, onSubmit, initialData }) => {
             accept="image/*"
             onChange={uploadImage}
             className="w-full mt-2 mb-3"
+            name="imageUrl"
           />
 
           {imageUrl && (

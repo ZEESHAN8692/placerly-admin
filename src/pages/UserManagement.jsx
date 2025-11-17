@@ -6,6 +6,8 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 
+import customStyles from "../custom/customeTableStyle";
+
 const UserManagement = () => {
     const [filterText, setFilterText] = useState("");
     const [statusFilter, setStatusFilter] = useState("All");
@@ -13,13 +15,13 @@ const UserManagement = () => {
     const [selectedUser, setSelectedUser] = useState(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    // ✅ Fetch Users
+    // Fetch Users
     const { data, isLoading, isError, refetch } = useQuery({
         queryKey: ["users"],
         queryFn: users,
     });
 
-    // ✅ Update User Mutation
+    // Update User Mutation
     const { mutate: updateUser, isLoading: updating } = useMutation({
         mutationFn: ({ id, data }) => update_user(id, data),
         onSuccess: () => {
@@ -32,7 +34,7 @@ const UserManagement = () => {
         },
     });
 
-    // ✅ Delete User Mutation
+    // Delete User Mutation
     const { mutate: deleteUser, isLoading: deleting } = useMutation({
         mutationFn: delete_user,
         onSuccess: () => {
@@ -74,7 +76,7 @@ const UserManagement = () => {
         }
     };
 
-    // ✅ Filter Users
+    // Filter Users
     const filteredUsers = useMemo(() => {
         if (!data?.data) return [];
         return data.data.filter(
@@ -101,7 +103,7 @@ const UserManagement = () => {
         );
     };
 
-    // ✅ Table Columns
+    // Table Columns
     const columns = [
         {
             name: "USER",
@@ -134,11 +136,10 @@ const UserManagement = () => {
             sortable: true,
             cell: (row) => (
                 <span
-                    className={`px-3 py-1.5 rounded-lg text-xs font-medium ${
-                        row.role === "admin"
-                            ? "bg-[#155DFC]/20 text-[#155DFC] border border-[#155DFC]/40"
-                            : "bg-gray-500/20 text-gray-400 border border-gray-500/40"
-                    }`}
+                    className={`px-3 py-1.5 rounded-lg text-xs font-medium ${row.role === "admin"
+                        ? "bg-[#155DFC]/20 text-[#155DFC] border border-[#155DFC]/40"
+                        : "bg-gray-500/20 text-gray-400 border border-gray-500/40"
+                        }`}
                 >
                     {row.role}
                 </span>
@@ -154,13 +155,25 @@ const UserManagement = () => {
             name: "ACTIONS",
             cell: (row) => (
                 <div className="flex space-x-2">
-                    <button onClick={() => handleEdit(row)} className="p-1.5 cursor-pointer">
-                        <FaEdit className="hover:text-blue-500" />
+                    {/* EDIT */}
+
+                    <button className="p-1.5 hover:bg-[#155DFC]/20 rounded-lg transition-colors duration-200"
+                        onClick={() => handleEdit(row)}
+                    >
+                        <svg className="w-4 h-4 text-[#155DFC]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                        </svg>
                     </button>
-                    <button onClick={() => handleDelete(row._id)} className="p-1.5 cursor-pointer">
-                        <FaTrashAlt className="hover:text-red-300" />
+
+
+                    {/* DELETE */}
+                    <button className="p-1.5 hover:bg-red-500/20 rounded-lg transition-colors duration-200" onClick={() => handleDelete(row._id)}>
+                        <svg className="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                        </svg>
                     </button>
                 </div>
+
             ),
             ignoreRowClick: true,
             allowOverflow: true,
@@ -168,17 +181,7 @@ const UserManagement = () => {
         },
     ];
 
-    const customStyles = {
-        table: { style: { backgroundColor: "transparent" } },
-        headRow: { style: { borderBottom: "1px solid rgba(248, 250, 252, 0.1)" } },
-        rows: {
-            style: {
-                backgroundColor: "transparent",
-                borderBottom: "1px solid rgba(248, 250, 252, 0.1)",
-                "&:hover": { backgroundColor: "rgba(21, 93, 252, 0.05)" },
-            },
-        },
-    };
+
 
     return (
         <Layout>
@@ -191,7 +194,7 @@ const UserManagement = () => {
                         </div>
                     </div>
 
-                    {/* ✅ Filters */}
+                    {/* Filters */}
                     <div className="flex flex-col lg:flex-row items-center gap-4 mb-6">
                         <div className="flex-1 w-full relative">
                             <input
@@ -213,7 +216,7 @@ const UserManagement = () => {
                         </select>
                     </div>
 
-                    {/* ✅ Table */}
+                    {/* Table */}
                     <div className="border border-[#F8FAFC]/10 rounded-lg overflow-hidden">
                         <DataTable
                             columns={columns}
@@ -223,14 +226,15 @@ const UserManagement = () => {
                             paginationPerPage={5}
                             highlightOnHover
                             pointerOnHover
-                            theme="dark"
+                            // theme="dark"
+
                             noDataComponent="No users found."
                         />
                     </div>
                 </div>
             </div>
 
-            {/* ✅ Update Modal */}
+            {/* Update Modal */}
             {isModalOpen && selectedUser && (
                 <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
                     <div className="bg-[#0B1F3A]/90 p-6 rounded-xl border border-[#F8FAFC]/10 w-full max-w-md">

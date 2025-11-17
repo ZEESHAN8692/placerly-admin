@@ -42,13 +42,18 @@ const delete_service_end = "api/delete-service"
 // Blog Routes
 const create_blogs_end = "api/create-blogs"
 const blogs_end = "api/blogs"
-const blog_end = "api/blog"
+const blog_end = "api/blog-by-id"
 const update_blog_end = "api/update-blog"
 const delete_blog_end = "api/delete-blog"
 
 
 // Admin Dashboard
 const admin_dashboard_end = "api/admin-dashboard"
+
+// Subscription 
+
+const subscription_end = "api/subscriptions"
+
 
 
 
@@ -96,7 +101,8 @@ export {
     blog_end,
     update_blog_end,
     delete_blog_end,
-    admin_dashboard_end
+    admin_dashboard_end,
+    subscription_end
    
 }
 

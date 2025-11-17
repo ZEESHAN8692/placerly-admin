@@ -4,6 +4,7 @@ import WealthSpinner from "../components/Spinner";
 import ProtectedRoutes from "./protectedRoute";
 
 
+
 // Lazy load pages
 const Login = lazy(() => import("../pages/Login"));
 const Dashboard = lazy(() => import("../pages/Dashboard"));
@@ -21,6 +22,8 @@ const Services = lazy(() => import("../pages/Services"));
 const TermsConditions = lazy(() => import("../pages/TermsConditions"));
 const Privacy = lazy(() => import("../pages/Privacy"));
 const Profile = lazy(() => import("../pages/Profile"));
+const AddBlog = lazy(() => import("../pages/Blog/AddBlog"));
+const UpdateBlog = lazy(() => import("../pages/Blog/UpdateBlog"));
 
 const Routing = () => {
   return (
@@ -39,17 +42,16 @@ const Routing = () => {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/dashboard/users" element={<UserManagement />} />
             <Route path="/dashboard/blogs" element={<BlogManagement />} />
+            <Route path="/dashboard/create-blog" element={<AddBlog />} />
+            <Route path="/dashboard/update-blog/:id" element={<UpdateBlog />} />
             <Route path="/dashboard/subscription" element={<Subscription />} />
             <Route path="/dashboard/pricing" element={<PricingManagement />} />
             <Route path="/dashboard/faq" element={<FAQManagement />} />
             <Route path="/dashboard/profile" element={<Profile />} />
-
-     
             <Route path="/dashboard/cms/about" element={<About />} />
             <Route path="/dashboard/cms/services" element={<Services />} />
             <Route path="/dashboard/cms/terms" element={<TermsConditions />} />
             <Route path="/dashboard/cms/privacy" element={<Privacy />} />
-
             <Route path="/dashboard/support" element={<Support />} />
             <Route path="/dashboard/banner" element={<Banner />} />
             <Route path="/dashboard/settings" element={<Settings />} />

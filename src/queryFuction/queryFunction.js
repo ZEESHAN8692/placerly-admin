@@ -1,5 +1,5 @@
 import axiosInstance from "../api/axiosInstance";
-import { admin_dashboard_end, banner_end, banners_end, blog_end, blogs_end, create_banners_end, create_blogs_end, create_faqs_end, create_pricings_end, create_services_end,  delete_banner_end, delete_blog_end, delete_pricing_end, delete_user_end, faq_end, faqs_end, login_end, logout_end, pricing_end, pricings_end, profile_end, service_end, services_end, update_banner_end, update_blog_end, update_faq_end, update_pricing_end, update_service_end, update_user_end, user_end, users_end } from "../api/urls";
+import { admin_dashboard_end, banner_end, banners_end, blog_end, blogs_end, create_banners_end, create_blogs_end, create_faqs_end, create_pricings_end, create_services_end,  delete_banner_end, delete_blog_end, delete_faq_end, delete_pricing_end, delete_user_end, faq_end, faqs_end, login_end, logout_end, pricing_end, pricings_end, profile_end, service_end, services_end, subscription_end, update_banner_end, update_blog_end, update_faq_end, update_pricing_end, update_service_end, update_user_end, user_end, users_end } from "../api/urls";
 
 
 export const login = async (data) => {
@@ -93,7 +93,7 @@ export const banner = async (id) => {
     }
 }
 
-export const update_banner = async (id, data) => {
+export const update_banner = async ({id, data}) => {
     try {
         const update_banner = await axiosInstance.put(`${update_banner_end}/${id}`, data);
         return update_banner.data
@@ -152,7 +152,7 @@ export const update_faq = async (id, data)=>{
 
 export const delete_faq = async (id)=>{
     try {
-        const delete_faq = await axiosInstance.delete(`${delete_banner_end}/${id}`);
+        const delete_faq = await axiosInstance.delete(`${delete_faq_end}/${id}`);
         return delete_faq.data
     } catch (error) {
         console.log(error)
@@ -304,3 +304,12 @@ export const admin_dashboard = async () => {
 }
 
 // Subscription Management
+
+export const subscriptions = async () => {
+    try {
+        const subscription = await axiosInstance.get(subscription_end);
+        return subscription.data
+    } catch (error) {
+        console.log(error)
+    }
+}
