@@ -12,6 +12,7 @@ import { useForm } from "react-hook-form";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import customStyles from "../custom/customeTableStyle";
 import { Form } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Banner = () => {
   const [filterText, setFilterText] = useState("");
@@ -38,13 +39,19 @@ const Banner = () => {
     mutationFn: update_banner,
     onSuccess: () => {
       queryClient.invalidateQueries(["banners"]);
+      toast.success("Banner updated successfully");
       setModalOpen(false);
     },
+    onError: () => toast.error("Update failed"),
   });
 
   const deleteMutation = useMutation({
     mutationFn: delete_banner,
-    onSuccess: () => queryClient.invalidateQueries(["banners"]),
+    onSuccess: () => {
+      queryClient.invalidateQueries(["banners"]);
+      toast.success("Banner deleted successfully");
+    },
+    onError: () => toast.error("Delete failed"),
   });
 
   const columns = [
