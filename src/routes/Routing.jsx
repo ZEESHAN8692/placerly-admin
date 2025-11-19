@@ -1,7 +1,7 @@
 import React, { Suspense, lazy } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import WealthSpinner from "../components/Spinner";
-import ProtectedRoutes from "./protectedRoute";
+import ProtectedRoutes from "./ProtectedRoutes";
 import AdminChat from "../pages/Chat";
 
 
