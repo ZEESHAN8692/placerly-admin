@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { io } from "socket.io-client";
 import Cookies from "js-cookie";
 import { Send, Users, MessageSquare, User } from 'lucide-react';
-import Layout from "../layout/layout";
+import Layout from "../layout/Layout";
 
 const socket = io("http://localhost:8000");
 

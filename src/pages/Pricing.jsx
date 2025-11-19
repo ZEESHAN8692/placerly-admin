@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-import Layout from "../layout/layout";
+import Layout from "../layout/Layout";
 import DataTable from "react-data-table-component";
 import customStyles from "../custom/customeTableStyle";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";

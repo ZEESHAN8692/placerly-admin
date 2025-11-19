@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Layout from "../layout/layout";
+import Layout from "../layout/Layout";
 import { motion } from "framer-motion";
 
 const Services = () => {

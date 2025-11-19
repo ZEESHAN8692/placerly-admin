@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { profile , updateProfile , resetPassword } from "../queryFuction/queryFunction";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import Layout from "../layout/layout";
+import Layout from "../layout/Layout";
 
 const Profile = () => {
   const queryClient = useQueryClient();

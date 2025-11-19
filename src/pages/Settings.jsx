@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Layout from "../layout/layout";
+import Layout from "../layout/Layout";
 
 const Settings = () => {
   const [formData, setFormData] = useState({

@@ -1,7 +1,7 @@
 import React from "react";
 import { HiOutlineUserGroup, HiOutlineClipboardList } from "react-icons/hi";
 import { FiBookOpen } from "react-icons/fi";
-import Layout from "../layout/layout";
+import Layout from "../layout/Layout";
 import { useQuery } from "@tanstack/react-query";
 import { admin_dashboard } from "../queryFuction/queryFunction";
 import { motion } from "framer-motion";

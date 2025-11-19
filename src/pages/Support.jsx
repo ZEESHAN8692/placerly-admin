@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import Layout from "../layout/layout";
+import Layout from "../layout/Layout";
 import AdminChat from "./Chat";
 
 const Support = () => {

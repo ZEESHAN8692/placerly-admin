@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Layout from "../../layout/layout";
+import Layout from "../../layout/Layout";
 import { Editor } from "@tinymce/tinymce-react";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { update_blog, blog } from "../../queryFuction/queryFunction";

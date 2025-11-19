@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-import Layout from "../layout/layout";
+import Layout from "../layout/Layout";
 import DataTable from "react-data-table-component";
 import { update_user, users, delete_user } from "../queryFuction/queryFunction";
 import { useMutation, useQuery } from "@tanstack/react-query";
