@@ -25,10 +25,10 @@ const PlacerlyLogin = () => {
     mutationFn: login,
     onSuccess: (data) => {
       if(data.style===200){
-        sessionStorage.setItem("token", data.token);
+        document.sessionStorage.setItem("token", data?.data?.token);
+        toast.success("Login successful");
       }
-      toast.success("Login successful");
-      console.log(data)
+      // console.log(data)
       navigate("/dashboard")
     },
     onError: (err) => {
