@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 import { Send, Users, MessageSquare, User } from 'lucide-react';
 import Layout from "../layout/Layout";
 
-const socket = io("http://localhost:8000");
+const socket = io("https://placerly-backend-1.onrender.com");
 
 const AdminChat=()=> {
   const [users, setUsers] = useState([]);
