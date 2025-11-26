@@ -24,6 +24,9 @@ const PlacerlyLogin = () => {
   const {mutate, isPending, isError, error}= useMutation({
     mutationFn: login,
     onSuccess: (data) => {
+      if(data.style===200){
+        sessionStorage.setItem("token", data.token);
+      }
       toast.success("Login successful");
       console.log(data)
       navigate("/dashboard")
@@ -37,7 +40,7 @@ const PlacerlyLogin = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    // console.log("Form submitted:", formData);
     mutate(formData)
   };
 
