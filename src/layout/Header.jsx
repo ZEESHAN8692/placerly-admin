@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { FiMenu, FiChevronDown, FiBell, FiUser, FiSettings, FiLogOut } from "react-icons/fi";
 import { logout, profile } from "../queryFuction/queryFunction";
 import { Link, useNavigate } from "react-router-dom";
-import Cookies from "js-cookie";
 
 const Header = ({ toggleSidebar }) => {
   const navigate= useNavigate()
@@ -17,8 +16,9 @@ const Header = ({ toggleSidebar }) => {
 
   const logoutHandhle =async ()=>{
     await logout()
-    Cookies.remove("token");
-    Cookies.remove("subscriptionActive");
+    sessionStorage.clear();
+    // Cookies.remove("token");
+    // Cookies.remove("subscriptionActive");
     navigate("/", { replace: true });
 
   }

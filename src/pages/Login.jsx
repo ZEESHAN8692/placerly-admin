@@ -21,14 +21,14 @@ const PlacerlyLogin = () => {
     }));
   };
 
-  const {mutate, isPending, isError, error}= useMutation({
+  const { mutate, isPending, isError, error } = useMutation({
     mutationFn: login,
     onSuccess: (data) => {
-      if(data.style===200){
-        document.sessionStorage.setItem("token", data?.data?.token);
-        toast.success("Login successful");
-      }
-      // console.log(data)
+
+      sessionStorage.setItem("token", data?.token);
+      toast.success("Login successful");
+
+      console.log(data?.token)
       navigate("/dashboard")
     },
     onError: (err) => {
@@ -121,7 +121,7 @@ const PlacerlyLogin = () => {
               </button>
             </div>
 
-           
+
           </div>
         </div>
 

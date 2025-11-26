@@ -22,7 +22,8 @@ const AdminChat=()=> {
   }, [messages]);
 
   useEffect(() => {
-    const token = Cookies.get("token");
+    // const token = Cookies.get("token");
+    const token = localStorage.getItem("token");
     socket.emit("registerUser", { token });
 
     socket.on("newMessageToAdmin", (msg) => {
