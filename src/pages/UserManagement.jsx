@@ -77,17 +77,23 @@ const UserManagement = () => {
     };
 
     // Filter Users
-    const filteredUsers = useMemo(() => {
-        if (!data?.data) return [];
-        return data.data.filter(
-            (user) =>
-                (user.name.toLowerCase().includes(filterText.toLowerCase()) ||
-                    user.email.toLowerCase().includes(filterText.toLowerCase()) ||
-                    user.phone?.toLowerCase().includes(filterText.toLowerCase())) &&
-                (statusFilter === "All" || user.status === statusFilter) &&
-                (roleFilter === "All" || user.role === roleFilter)
+    
+const filteredUsers = useMemo(() => {
+    if (!data?.data) return [];
+    return data.data.filter((user) => {
+        const nameMatch = user.name.toLowerCase().includes(filterText.toLowerCase());
+        const emailMatch = user.email.toLowerCase().includes(filterText.toLowerCase());
+        const phoneMatch = user.phone
+            ? String(user.phone).includes(filterText) // convert number to string
+            : false;
+
+        return (
+            (nameMatch || emailMatch || phoneMatch) &&
+            (statusFilter === "All" || user.status === statusFilter) &&
+            (roleFilter === "All" || user.role === roleFilter)
         );
-    }, [data, filterText, statusFilter, roleFilter]);
+    });
+}, [data, filterText, statusFilter, roleFilter]);
 
     const StatusBadge = ({ status }) => {
         const statusConfig = {

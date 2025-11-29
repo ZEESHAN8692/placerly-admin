@@ -1,4 +1,4 @@
-const base_url = "https://placerly-backend-1.onrender.com/"
+const base_url = "http://localhost:8000/"
 const login_end = "api/admin-login"
 const logout_end = "api/logout"
 const profile_end = "api/profile"
